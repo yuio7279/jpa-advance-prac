@@ -49,5 +49,27 @@ public class OneToOneTest {
 
     }
 
+    @Test
+    @Rollback(value = false)
+    @DisplayName("1:1 양방향 테스트")
+    void test3(){
+        User user = new User();
+        user.setName("kys");
+
+
+        Food food = new Food();
+        food.setName("고구마피자");
+        food.setPrice(15000);
+
+
+        // = food.setUser(user)
+        user.addFood(food);
+
+        foodRepository.save(food);
+        userRepository.save(user);
+
+    }
+
+
 
 }
