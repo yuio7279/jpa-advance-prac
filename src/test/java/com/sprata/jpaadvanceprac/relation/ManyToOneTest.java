@@ -56,4 +56,25 @@ public class ManyToOneTest {
         System.out.println("food.getPrice() = " + food.getPrice());
     }
 
+    @Test
+    @Rollback(value= false)
+    @DisplayName("N:1 양방향 테스트")
+    void test3(){
+        User user = new User();
+        user.setName("kys");
+
+        Food food = new Food();
+        food.setName("치킨");
+        food.setPrice(15000);
+        food.setUser(user);
+
+        Food food2 = new Food();
+        food2.setName("불고기피자");
+        food2.setPrice(23000);
+        food2.setUser(user);
+
+        userRepository.save(user);
+        foodRepository.save(food);
+        foodRepository.save(food2);
+    }
 }

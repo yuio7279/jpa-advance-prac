@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,11 +17,15 @@ public class User {
     private Long Id;
     private String name;
 
+    @OneToMany(mappedBy = "user")
+    private List<Food> FoodList = new ArrayList<>();
 
-//    public void addFood(Food food){
-//        this.food = food;
-//        food.setUser(this);
-//    }
+    public void addFoodList(Food food){
+        this.FoodList.add(food);
+        food.setUser(this);
+    }
+
+
 
 
 }
