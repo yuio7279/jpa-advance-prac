@@ -44,4 +44,16 @@ public class ManyToOneTest {
 
     }
 
+    @Test
+    @DisplayName("N:1 단방향 조회 테스트")
+    void test2(){
+        Food food = foodRepository.findById(1L).orElseThrow(NullPointerException::new);
+        //단방향은 이런게 안좋다. user입장에서 조회를 못하니깐 user가 주문한 음식들을 한번에 볼수가 없다.
+
+        //단순히 음식입장에서 주문한 고객만을 조회할 수 있을 뿐이다.
+        System.out.println("food.getUser().getName() = " + food.getUser().getName());
+        System.out.println("food.getName() = " + food.getName());
+        System.out.println("food.getPrice() = " + food.getPrice());
+    }
+
 }
