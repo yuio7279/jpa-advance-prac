@@ -1,3 +1,4 @@
+/*
 package com.sprata.jpaadvanceprac.relation;
 
 
@@ -94,3 +95,4 @@ public class OneToOneTest {
 
     }
 }
+*/
