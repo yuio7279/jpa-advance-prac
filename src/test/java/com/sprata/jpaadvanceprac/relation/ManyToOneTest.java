@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SpringBootTest
 @Transactional
 public class ManyToOneTest {
@@ -76,5 +78,19 @@ public class ManyToOneTest {
         userRepository.save(user);
         foodRepository.save(food);
         foodRepository.save(food2);
+    }
+
+    @Test
+    @DisplayName("N:1 양방향 조회 테스트 user기준")
+    void test4(){
+        User user = userRepository.findById(1L).orElseThrow(NullPointerException::new);
+        //고객 이름
+        System.out.println("user.getName() = " + user.getName());
+        //고객잉 주문한 음식 리스트
+        List<Food> list =  user.getFoodList();
+        for (Food food : list) {
+            System.out.println("food.getName() = " + food.getName());
+            System.out.println("food.getPrice() = " + food.getPrice());
+        }
     }
 }
